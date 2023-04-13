@@ -9,12 +9,19 @@
         <h1>Bootleg Reddit</h1>
         <nav>
           <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/account">Account</a></li>
-            <li><a href="/createpost"><button>Create Post</button></a</li>
-            <li><a href="/login"><button>Logout</button></a></li>
+            <li><a action="/home" method="get" href="/home">Home</a></li>
+            <li><a action="/account" method="get" href="/account">Account</a></li>
           </ul>
         </nav>
+
+        <form action="/createpost" method="post">
+          <input type="submit" value="Create Post">
+        </form>
+
+        <form action="/" method="post">
+          <input type="submit" value="Logout">
+        </form>
+
       </header>
     
     <main>

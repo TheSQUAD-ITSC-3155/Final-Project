@@ -1,27 +1,38 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():  
-    return render_template('login.html')
+    return render_template('index.html')
 
+@app.route('/home', methods=['POST', 'GET'])
+def goHome():
+    return render_template('home.html')
+
+@app.route('/createpost', methods=['POST', 'GET'])
+def postcreate():
+    return render_template('createpost.html')
+
+@app.route('/account', methods=['POST', 'GET'])
+def createA():
+    return render_template('account.html')
+'''
 @app.get('/newAccount')
-def list_all_movies():
+def newA():
     return render_template('newAccount.html')
 
 @app.get('/home')
-def list_all_movies():
+def goHome():
     return render_template('home.html')
 
-@app.get('/createpost')
-def list_all_movies():
+@app.post('/createpost')
+def postcreate():
     return render_template('createpost.html')
 
 @app.get('/account')
-def list_all_movies():
+def createA():
     return render_template('account.html')
-
+'''
 if __name__ == "__main__":
     app.run(debug = True)
