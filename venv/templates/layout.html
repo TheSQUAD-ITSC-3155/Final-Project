@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <ul>{% block nav %}{% endblock %} </ul>
+    <link rel="stylesheet" href="{{ url_for('/home', filename = 'css/stylesheet.css') }}">
+  </head>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('/account', filename = 'css/accountstyle.css') }}">
+  </head>
+  <body>
+    <link rel="stylesheet" href="{{ url_for('/createpost', filename = 'css/createpoststyle.css') }}">
+    {% block content %}{% endblock %}
+  </body>
+  <body>
+    <link rel="stylesheet" href="{{ url_for('/', filename = 'css/login.css') }}">
+    {% block table %}{% endblock %}
+  </body>
+  <body>
+    <link rel="stylesheet" href="{{ url_for('/newAccount', filename = 'css/newaccount.css') }}">
+    {% block newAcc %}{% endblock %}
+  </body>
+</html>
