@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Page</title>
+  <style>
+    header {
+    background-color: #055718;
+    color: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+    nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    margin: 0 10px;
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    color: #FFF;
+    text-decoration: none;
+  }
+  nav ul li button {
+    background-color: #FFF;
+    border: none;
+    border-radius: 5px;
+    color: #055718;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+    body {
+      background-color: #F2F2F2;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    .profile {
+      background-color: #FFF;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      margin: 50px auto;
+      max-width: 400px;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+      border: 1px solid #CCC;
+      border-radius: 3px;
+      box-sizing: border-box;
+      display: block;
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+    }
+    img {
+      display: block;
+      height: 100px;
+      margin-bottom: 10px;
+      width: 100px;
+    }
+    .edit-profile {
+      background-color: #055718;
+      border: none;
+      border-radius: 3px;
+      color: #FFF;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+    .edit-password {
+      background-color: transparent;
+      border: none;
+      color: blue;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 5px;
+      text-decoration: underline;
+    }
+    footer {
+    background-color: #333;
+    color: #FFF;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Bootleg Reddit</h1>
+        <nav>
+          <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/account">Account</a></li>
+            <li><a href="/createpost"><button>Create Post</button></a</li>
+            <li><a href="/login"><button>Logout</button></a></li>
+          </ul>
+        </nav>
+      </header>
+  <div class="profile">
+    <h2>My Profile</h2>
+    <img src="https://via.placeholder.com/100x100" alt="Profile Picture">
+    <button>Edit Profile Picture</button>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" value="johndoe" readonly>
+    <label for="birthdate">Birthdate</label>
+    <input type="date" id="birthdate" name="birthdate" value="1990-01-01" readonly>
+    <label for="password">Password</label>
+    <div>
+      <input type="password" id="password" name="password" value="********" readonly>
+      <button class="edit-password">Show</button>
+    </div>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="johndoe@example.com" readonly>
+    <button class="edit-profile">Edit Profile</button>
+  </div>
+  <footer>
+    <p>Bootleg Reddit &copy; 2023</p>
+  </footer>
+</body>
+</html>
