@@ -1,6 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+    header {
+    background-color: #055718;
+    color: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #FFF;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  h1{
+    text-align: center;
+  }
+  form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  width: 60%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+button[type="submit"] {
+  background-color: #055718;
+  color: white;
+  padding: 2px 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button[type="reset"] {
+  background-color: #055718;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="reset"]:hover {
+  background-color: #055718;
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the navigation bar links */
+  nav ul li {
+    margin: 0 10px;
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    color: #FFF;
+    text-decoration: none;
+  }
+    </style>
+
+
     <title>Bootleg Reddit</title>
     <link rel="stylesheet" href="css/stylesheet.css">
   </head>
@@ -32,13 +132,18 @@
             <h3><a href="#">Post Title</a></h3>
             <p>Posted by <a href="#">Username</a></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, provident numquam quis consectetur debitis vitae eligendi dolore consequuntur natus maxime voluptatum dolorum delectus. Eaque architecto, recusandae deserunt perferendis quibusdam consequatur.</p>
-            <button type="button">Comment</button>
+            <!--<button type="button">Comment</button>-->
+            <form action="/comment" method="post">
+              <input type="submit" value="Comment">
+            </form>
           </li>
           <li>
             <h3><a href="#">Another Post Title</a></h3>
             <p>Posted by <a href="#">Another User</a></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, provident numquam quis consectetur debitis vitae eligendi dolore consequuntur natus maxime voluptatum dolorum delectus. Eaque architecto, recusandae deserunt perferendis quibusdam consequatur.</p>
-            <button type="button">Comment</button>
+            <form action="/comment" method="post">
+              <input type="submit" value="Comment">
+            </form>
           </li>
         </ul>
       </section>
@@ -50,13 +155,17 @@
             <h3><a href="#">New Post Title</a></h3>
             <p>Posted by <a href="#">Yet Another User</a></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, provident numquam quis consectetur debitis vitae eligendi dolore consequuntur natus maxime voluptatum dolorum delectus. Eaque architecto, recusandae deserunt perferendis quibusdam consequatur.</p>
-            <button type="button">Comment</button>
+            <form action="/comment" method="post">
+              <input type="submit" value="Comment">
+            </form>
           </li>
           <li>
             <h3><a href="#">Another New Post Title</a></h3>
             <p>Posted by <a href="#">Yet Another User</a></p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, provident numquam quis consectetur debitis vitae eligendi dolore consequuntur natus maxime voluptatum dolorum delectus. Eaque architecto, recusandae deserunt perferendis quibusdam consequatur.</p>
-            <button type="button">Comment</button>
+            <form action="/comment" method="post">
+              <input type="submit" value="Comment">
+            </form>
           </li>
         </ul>
       </section>

@@ -17,6 +17,10 @@ def postcreate():
 @app.route('/account', methods=['POST', 'GET'])
 def createA():
     return render_template('account.html')
+
+@app.route('/comment', methods=['POST', 'GET'])
+def postcomment():
+    return render_template('comment.html')
 '''
 @app.get('/newAccount')
 def newA():
