@@ -1,6 +1,15 @@
-from flask import Flask, render_template
-app = Flask(__name__)
+from flask import Flask, abort, redirect, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from src.repositories.post_repository import post_repository_singleton
 
+from src.models import db
+
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+'mysql://root:MyLiyu2319*@localhost:3306/Data'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():  
@@ -9,6 +18,20 @@ def index():
 @app.route('/home', methods=['POST', 'GET'])
 def goHome():
     return render_template('home.html')
+
+@app.route('/test')
+def test():
+    posts = post_repository_singleton.get_all_posts()
+    return render_template('test.html', posts=posts)
+'''
+@app.route('/test', methods=['POST', 'GET'])
+def list_all_posts():
+    all_posts = post_repository_singleton.get_all_posts()
+    return render_template('test.html', test=True, posts=all_posts)
+    
+@app.route('/test', methods=['POST', 'GET'])
+def goHome():
+    return render_template('test.html')
 
 @app.route('/createpost', methods=['POST', 'GET'])
 def postcreate():
@@ -21,22 +44,6 @@ def createA():
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
     return render_template('comment.html')
-'''
-@app.get('/newAccount')
-def newA():
-    return render_template('newAccount.html')
-
-@app.get('/home')
-def goHome():
-    return render_template('home.html')
-
-@app.post('/createpost')
-def postcreate():
-    return render_template('createpost.html')
-
-@app.get('/account')
-def createA():
-    return render_template('account.html')
 '''
 if __name__ == "__main__":
     app.run(debug = True)
