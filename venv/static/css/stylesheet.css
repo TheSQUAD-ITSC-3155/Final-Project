@@ -95,7 +95,7 @@ header {
     color: #FFF;
     padding: 10px;
     text-align: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
   }

@@ -7,7 +7,7 @@ from src.models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql://root:MyLiyu2319*@localhost:3306/Data'
+'mysql://root:Mattie233*@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -17,7 +17,8 @@ def index():
 
 @app.route('/home', methods=['POST', 'GET'])
 def goHome():
-    return render_template('home.html')
+    posts = post_repository_singleton.get_all_posts()
+    return render_template('home.html', posts=posts)
 
 @app.route('/test')
 def test():

@@ -57,6 +57,7 @@ VALUES
 INSERT INTO Post (C_Name, Words, User_Id)
 VALUES
     ('Why', 'I hurt in the shower.', 0),
+    ('Need', 'Help with SQL.', 0),
     ('Do', 'You feel it?', 1)
 ;
 
