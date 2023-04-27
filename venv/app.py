@@ -30,19 +30,6 @@ def test():
     posts = post_repository_singleton.get_all_posts()
     return render_template('test.html', posts=posts)
 
-
-"""@app.route('/createpost', methods=['POST', 'GET'])
-def postcreate():
-    if request.method == 'POST':
-        Post_Id = 3
-        C_Name = request.form.get('post_name', "hi")
-        User_Id = 0
-        Words = request.form.get('post_content', "hello")
-        print("C_Name: ", C_Name)
-        print("Words: ", Words)
-        return render_template('createpost.html', C_Name=C_Name, Words=Words)
-    return render_template('createpost.html')"""
-
 @app.route('/createpost', methods=['POST', 'GET'])
 def postcreate():
     C_Name = ""
@@ -64,7 +51,9 @@ def createA():
 
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
-    return render_template('comment.html')
+    comments = post_repository_singleton.get_all_comments()
+    postID = 0
+    return render_template('comment.html',comments=comments, postID=postID)
 
 if __name__ == "__main__":
     app.run(debug = True)

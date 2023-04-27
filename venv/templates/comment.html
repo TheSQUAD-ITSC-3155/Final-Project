@@ -117,6 +117,20 @@ nav ul {
       <br>
       <button type="submit">Comment</button>
     </form>
+    <section>
+      <h2>Comments</h2>
+      <ul>
+        <!--comment.Post_ID is not taking, but it does contain a value as setting it to see if it is empty shows that it isn't...-->
+        {% for comment in comments %}
+        {{ comments }}
+          {% if comment.Post_ID == 0 %}
+          <li>
+            <p>{{ comment.Words }}</p>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      </section>
     <footer>
         <p>Bootleg Reddit &copy; 2023</p>
       </footer>

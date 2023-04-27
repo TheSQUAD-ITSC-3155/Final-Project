@@ -63,7 +63,18 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 48%;
+    width: 850%;
+  }
+
+  section ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    width: 100%;
   }
   
   /* Style the post titles */

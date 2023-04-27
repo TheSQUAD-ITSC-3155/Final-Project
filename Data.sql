@@ -34,7 +34,7 @@ VALUES
 ;
 select * from Post;
 
-CREATE TABLE IF NOT EXISTS C_Comment (
+CREATE TABLE IF NOT EXISTS Comments (
 	Comment_Id INT NOT NULL,
     Post_Id INT NULL,
     User_Id INT NULL,
@@ -44,19 +44,19 @@ CREATE TABLE IF NOT EXISTS C_Comment (
     FOREIGN KEY (User_Id) REFERENCES Person(User_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-INSERT INTO C_Comment (Comment_Id, Post_Id, User_Id, Words)
+INSERT INTO Comments (Comment_Id, Post_Id, User_Id, Words)
 VALUES
     (0, 0, 0,'Lol'),
     (1,1,1,'Thats Dumb')
 ;
-select * from C_Comment;
+select * from Comments;
 
 CREATE TABLE IF NOT EXISTS liked_comments (
     User_Id INT NOT NULL,
     Comment_Id INT NOT NULL,
     PRIMARY KEY (User_Id, Comment_Id),
     FOREIGN KEY (User_Id) REFERENCES Person(User_Id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (Comment_Id) REFERENCES C_Comment(Comment_Id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (Comment_Id) REFERENCES Comments(Comment_Id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 INSERT INTO liked_comments (User_Id, Comment_Id)

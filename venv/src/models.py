@@ -15,11 +15,10 @@ class Post(db.Model):
     User_Id = db.Column(db.Integer, nullable=True)
     Words = db.Column(db.String, nullable=True) 
 
-class C_Comment(db.Model):
+class Comments(db.Model):
 
     Comment_Id = db.Column(db.Integer, primary_key=True)
     Post_Id = db.Column(db.Integer, nullable=False)
-    C_Name = db.Column(db.String, nullable=False)
     User_Id = db.Column(db.Integer, nullable=False)
     Words = db.Column(db.String, nullable=False) 
 
