@@ -8,13 +8,15 @@ CREATE TABLE IF NOT EXISTS Person (
 	/*User_Id INT AUTO_INCREMENT NOT NULL,*/
     User_Id INT NOT NULL,
 	Username VARCHAR(255) NOT NULL,
-    Picture_Id INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    /*Picture_Id INT NOT NULL,*/
     PRIMARY KEY (User_Id)
 );
-INSERT INTO Person (User_Id, Username, Picture_Id)
+INSERT INTO Person (User_Id, Username, email, password)
 VALUES
-    (0, 'GrantMorrigan33', 1),
-    (1, 'WallFace', 5)
+    (0, 'GrantMorrigan33', 'emails', 'passs'),
+    (1, 'WallFace', 'email', 'pass')
 ;
 select * from Person;
 
@@ -44,11 +46,17 @@ CREATE TABLE IF NOT EXISTS Comments (
     FOREIGN KEY (User_Id) REFERENCES Person(User_Id) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-INSERT INTO Comments (Comment_Id, Post_Id, User_Id, Words)
+/*INSERT INTO Comments (Comment_Id, Post_Id, User_Id, Words)
 VALUES
     (0, 0, 0,'Lol'),
     (1,1,1,'Thats Dumb')
-;
+;*/
+
+INSERT INTO Comments (Comment_Id, User_Id, Words)
+VALUES
+    (0, 0,'Lol'),
+    (1,1,'Thats Dumb');
+    
 select * from Comments;
 
 CREATE TABLE IF NOT EXISTS liked_comments (

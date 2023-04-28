@@ -22,18 +22,25 @@
     <h2>My Profile</h2>
     <img src="https://via.placeholder.com/100x100" alt="Profile Picture">
     <button>Edit Profile Picture</button>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" value="johndoe" readonly>
-    <label for="birthdate">Birthdate</label>
-    <input type="date" id="birthdate" name="birthdate" value="1990-01-01" readonly>
-    <label for="password">Password</label>
-    <div>
-      <input type="password" id="password" name="password" value="********" readonly>
-      <button class="edit-password">Show</button>
-    </div>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" value="johndoe@example.com" readonly>
-    <button class="edit-profile">Edit Profile</button>
+
+    <form action="/account" method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" class="form-control" autocomplete="off" required>
+      <br>
+      <label for="birthdate">Birthdate</label>
+      <input type="date" id="birthdate" name="birthdate" class="form-control" autocomplete="off" required>
+      <br>
+      <div>
+        <label for="Password">Password</label>
+        <input type="password" id="password" name="password"  class="form-control" autocomplete="off" required>
+        <button class="edit-password">Show</button>
+      </div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email"  class="form-control" autocomplete="off" required>
+      <button class="edit-profile">Edit Profile</button>
+      <button type="submit">Save</button>
+    </form>
+
   </div>
   <footer>
     <p>Bootleg Reddit &copy; 2023</p>

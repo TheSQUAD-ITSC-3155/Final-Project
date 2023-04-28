@@ -111,23 +111,21 @@ nav ul {
         </nav>
       </header>
     <h1>Comment on Post</h1>
-    <form action="/home" method="get">
-      <label for="title">Comment:</label>
-      <input type="text" id="comment" name="comment" required>
+    <form action="/comment" method="post">
+      <label for="post_comment">Comment:</label>
+      <textarea id="post_comment" name="post_comment" class="form-control" autocomplete="off" required maxlength="200" placeholder="Enter your comment here"></textarea>
       <br>
       <button type="submit">Comment</button>
     </form>
+    
     <section>
       <h2>Comments</h2>
       <ul>
         <!--comment.Post_ID is not taking, but it does contain a value as setting it to see if it is empty shows that it isn't...-->
         {% for comment in comments %}
-        {{ comments }}
-          {% if comment.Post_ID == 0 %}
           <li>
             <p>{{ comment.Words }}</p>
           </li>
-          {% endif %}
         {% endfor %}
       </ul>
       </section>

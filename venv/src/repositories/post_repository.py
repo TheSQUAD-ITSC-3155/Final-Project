@@ -10,11 +10,28 @@ class PostRepository:
         comment: list[Comments]=Comments.query.all()
         return comment
 
+    def get_all_accounts(self) -> list[Person]:
+        person: list[Person]=Person.query.all()
+        return person
+
     def create_post(self, Post_Id: int, C_Name: str, User_Id: int, Words: str) -> Post:
         new_post = Post(Post_Id= Post_Id, C_Name=C_Name, User_Id = User_Id, Words=Words)
         db.session.add(new_post)
         db.session.commit()
         return new_post
+
+    def create_comment(self, Comment_Id: int, Post_Id: int, User_Id: int, Words: str) -> Comments:
+        '''Post_Id = Post.query.get(Post_Id)'''
+        new_comment = Comments(Comment_Id= Comment_Id, Post_Id =Post_Id, User_Id = User_Id, Words=Words)
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment
+
+    def create_account(self, User_Id: int, Username: str, email: str, password: str,) -> Person:
+        new_person = Person(User_Id = User_Id, Username=Username, email=email, password=password)
+        db.session.add(new_person)
+        db.session.commit()
+        return new_person
 
 # Singleton to be used in other modules
 post_repository_singleton = PostRepository()

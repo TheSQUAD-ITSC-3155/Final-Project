@@ -6,15 +6,18 @@ import random
 
 from sqlalchemy import func
 from src.models import Post
+from src.models import Comments
+from src.models import Person
 
 from src.models import db
 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql+pymysql://root:password@localhost:3306/Reddit'
+'mysql+pymysql://root:MyLiyu2319*@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():  
@@ -43,17 +46,58 @@ def postcreate():
             created_post = post_repository_singleton.create_post(Post_Id, C_Name, User_Id, Words)
             return redirect('/home')
     return render_template('createpost.html')
-
-
-@app.route('/account', methods=['POST', 'GET'])
-def createA():
-    return render_template('account.html')
-
+'''
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
     comments = post_repository_singleton.get_all_comments()
-    postID = 0
-    return render_template('comment.html',comments=comments, postID=postID)
+    return render_template('comment.html',comments=comments)
+
+@app.route('/comment', methods=['POST', 'GET'])
+def postcomment():
+    if request.method == 'POST':
+        Words = request.form.get('post_comment')
+        if Words:
+            Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
+            Post_Id = 1
+            User_Id = 1
+            created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
+            return redirect('/comment')
+    comments = post_repository_singleton.get_all_comments()
+    return render_template('comment.html', comments=comments)
+'''
+@app.route('/comment', methods=['POST', 'GET'])
+def postcomment():
+    if request.method == 'POST':
+        Words = request.form.get('post_comment')
+        if Words:
+            Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
+            Post_Id = request.args.get('post_id')
+            User_Id = 1
+            created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
+            return redirect('/comment?post_id=' + str(Post_Id))
+    comments = post_repository_singleton.get_all_comments()
+    return render_template('comment.html', comments=comments)
+
+'''
+@app.route('/account', methods=['POST', 'GET'])
+def createA():
+    person = post_repository_singleton.get_all_accounts()
+    return render_template('account.html', person=person)
+'''
+@app.route('/account', methods=['POST', 'GET'])
+def createA():
+    Username = ""
+    email = ""
+    password=""
+    if request.method == 'POST':
+        Username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        User_Id = db.session.query(func.count(Person.User_Id)+1).scalar()
+        if (Username != ""):
+            created_account = post_repository_singleton.create_account(User_Id, Username, email, password)
+            return redirect('/home')
+    return render_template('account.html')
 
 if __name__ == "__main__":
     app.run(debug = True)
