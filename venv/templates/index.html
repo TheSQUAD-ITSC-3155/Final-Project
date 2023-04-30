@@ -11,13 +11,17 @@
     <header>
         <h1>Bootleg Reddit</h1>
       </header>
-  <form action="/home" method="get">
+  <form action="/home" method="post">
     <h2>Login</h2>
     <label for="username">Username</label>
-    <input type="text" id="username" name="username" required>
+    <input type="text" id="username" name="username">
     <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password">
     <input type="submit" value="Login">
+    <h1></h1>
+  </form>
+  <form action="/newAccount" method="post">
+    <input type="submit" value="Register an Account">
     <!--<a action="/newAccount" method="get" href="/newAccount">Create new account</a>-->
   </form>
   <footer>

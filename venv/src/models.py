@@ -7,7 +7,7 @@ class Person(db.Model):
     User_Id = db.Column(db.Integer, primary_key=True)
     Username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
-    password = db.Column(db.String, nullable=False)
+    passwords = db.Column(db.String, nullable=False)
     '''Picture_Id = db.Column(db.Integer, nullable=False)'''
 
 class Post(db.Model):

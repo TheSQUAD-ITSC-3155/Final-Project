@@ -14,7 +14,7 @@ from src.models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql+pymysql://root:MyLiyu2319*@localhost:3306/Reddit'
+'mysql+pymysql://root:Luigi123@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -25,8 +25,19 @@ def index():
 
 @app.route('/home', methods=['POST', 'GET'])
 def goHome():
+    password = request.form.get('password')
+    username = request.form.get('username')
     posts = post_repository_singleton.get_all_posts()
-    return render_template('home.html', posts=posts)
+    users = post_repository_singleton.get_all_accounts()
+    if request.method == 'POST':
+        for user in users:
+            if (password == user.passwords and username == user.Username):
+                return render_template('home.html', posts=posts)
+    return render_template('index.html')
+
+@app.route('/newAccount', methods=['POST', 'GET'])
+def pengus():
+    return redirect('/account')
 
 @app.route('/test')
 def test():

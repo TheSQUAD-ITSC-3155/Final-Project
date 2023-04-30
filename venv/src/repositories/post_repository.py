@@ -27,8 +27,8 @@ class PostRepository:
         db.session.commit()
         return new_comment
 
-    def create_account(self, User_Id: int, Username: str, email: str, password: str,) -> Person:
-        new_person = Person(User_Id = User_Id, Username=Username, email=email, password=password)
+    def create_account(self, User_Id: int, Username: str, email: str, passwords: str,) -> Person:
+        new_person = Person(User_Id = User_Id, Username=Username, email=email, passwords=passwords)
         db.session.add(new_person)
         db.session.commit()
         return new_person

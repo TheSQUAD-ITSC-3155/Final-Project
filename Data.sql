@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS Person (
     User_Id INT NOT NULL,
 	Username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    passwords VARCHAR(255) NOT NULL,
     /*Picture_Id INT NOT NULL,*/
     PRIMARY KEY (User_Id)
 );
-INSERT INTO Person (User_Id, Username, email, password)
+INSERT INTO Person (User_Id, Username, email, passwords)
 VALUES
     (0, 'GrantMorrigan33', 'emails', 'passs'),
     (1, 'WallFace', 'email', 'pass')
