@@ -14,7 +14,7 @@ from src.models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql+pymysql://root:password@localhost:3306/Reddit'
+'mysql+pymysql://root:Mattie233*@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -78,11 +78,12 @@ def postcomment():
 '''
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
+    Post_Id = 1
     if request.method == 'POST':
         Words = request.form.get('post_comment')
         if Words:
             Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
-            Post_Id = request.args.get('post_id')
+            #Post_Id = request.args.get('post_id')
             User_Id = 1
             created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
             return redirect('/comment?post_id=' + str(Post_Id))

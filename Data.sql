@@ -38,7 +38,7 @@ select * from Post;
 
 CREATE TABLE IF NOT EXISTS Comments (
 	Comment_Id INT NOT NULL,
-    Post_Id INT NULL,
+    Post_Id INT,
     User_Id INT NULL,
     Words VARCHAR(255) NOT NULL,
     PRIMARY KEY (Comment_Id),

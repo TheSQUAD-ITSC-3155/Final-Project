@@ -123,9 +123,11 @@ nav ul {
       <ul>
         <!--comment.Post_ID is not taking, but it does contain a value as setting it to see if it is empty shows that it isn't...-->
         {% for comment in comments %}
+        {% if comment.Post_Id == Post_Id %}
           <li>
             <p>{{ comment.Words }}</p>
           </li>
+        {% endif %}
         {% endfor %}
       </ul>
       </section>
