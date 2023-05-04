@@ -117,14 +117,12 @@ nav ul {
       {% endif %}
       {% endfor %}
     <form action="/comment" method="post">
-      <input type="text" name="debug2" id="debug2" class="form-control" autocomplete="off" value="{{Post_Id}}">
+      <input type="text" name="debug2" id="debug2" class="form-control" autocomplete="off" value="{{Post_Id}}" hidden = "hidden">
       <label for="post_comment">Comment:</label>
       <textarea id="post_comment" name="post_comment" class="form-control" autocomplete="off" required maxlength="200" placeholder="Enter your comment here"></textarea>
       <br>
       <button type="submit">Comment</button>
-      <p id="work">pain</p>
     </form>
-    <button type="submit">Comment</button>
     
     <section>
       <h2>Comments</h2>
@@ -143,7 +141,3 @@ nav ul {
       </footer>
   </body>
 </html>
-
-<script>
-  document.getElementById("work").innerHTML = "{{ Post_Id }}".toString()
-</script>

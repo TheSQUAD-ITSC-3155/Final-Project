@@ -33,7 +33,7 @@
                 <!--<button type="button">Comment</button>-->
                   <input id= {{post.Post_Id}} type="submit" value="Comment">
                   {% if post.Post_Id == 0 %}
-                  <input type="text" name="debug" id="debug" class="form-control" autocomplete="off">
+                  <input type="text" name="debug" id="debug" class="form-control" autocomplete="off" hidden = "hidden">
                   {% endif %}
                   <button id={{post.Post_Id}}>Angre</button>
                 {% endfor %}

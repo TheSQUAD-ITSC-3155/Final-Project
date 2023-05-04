@@ -82,12 +82,13 @@ def postcomment():
     #if (request.form.get('debug2'))
     #Post_Id = 0
     Post_Id = int(request.form.get('debug2'))
+    ReloadPage = 0
     comments = post_repository_singleton.get_all_comments()
     Words = request.form.get('post_comment')
     Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
     User_Id = 1
     created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
-    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id)
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id, ReloadPage = ReloadPage)
     #return redirect("/comment")
 
 @app.route('/commentPage', methods=['POST', 'GET'])
