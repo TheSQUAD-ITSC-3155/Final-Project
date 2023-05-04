@@ -110,18 +110,25 @@ nav ul {
           </ul>
         </nav>
       </header>
-    <h1>Comment on Post</h1>
+      {% for post in posts %}
+      {% if post.Post_Id == Post_Id %}
+          <h1>{{ post.C_Name }}</h1>
+          <h3>{{ post.Words }}</h3>
+      {% endif %}
+      {% endfor %}
     <form action="/comment" method="post">
+      <input type="text" name="debug2" id="debug2" class="form-control" autocomplete="off" value="{{Post_Id}}">
       <label for="post_comment">Comment:</label>
       <textarea id="post_comment" name="post_comment" class="form-control" autocomplete="off" required maxlength="200" placeholder="Enter your comment here"></textarea>
       <br>
       <button type="submit">Comment</button>
+      <p id="work">pain</p>
     </form>
+    <button type="submit">Comment</button>
     
     <section>
       <h2>Comments</h2>
       <ul>
-        <!--comment.Post_ID is not taking, but it does contain a value as setting it to see if it is empty shows that it isn't...-->
         {% for comment in comments %}
         {% if comment.Post_Id == Post_Id %}
           <li>
@@ -136,3 +143,7 @@ nav ul {
       </footer>
   </body>
 </html>
+
+<script>
+  document.getElementById("work").innerHTML = "{{ Post_Id }}".toString()
+</script>

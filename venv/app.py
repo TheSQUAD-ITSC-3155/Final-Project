@@ -14,7 +14,7 @@ from src.models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql+pymysql://root:Mattie233*@localhost:3306/Reddit'
+'mysql+pymysql://root:password@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -78,17 +78,26 @@ def postcomment():
 '''
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
-    Post_Id = 1
-    if request.method == 'POST':
-        Words = request.form.get('post_comment')
-        if Words:
-            Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
-            #Post_Id = request.args.get('post_id')
-            User_Id = 1
-            created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
-            return redirect('/comment?post_id=' + str(Post_Id))
+    posts = post_repository_singleton.get_all_posts()
+    #if (request.form.get('debug2'))
+    #Post_Id = 0
+    Post_Id = int(request.form.get('debug2'))
     comments = post_repository_singleton.get_all_comments()
-    return render_template('comment.html', comments=comments)
+    Words = request.form.get('post_comment')
+    Comment_Id = db.session.query(func.count(Comments.Comment_Id)+1).scalar()
+    User_Id = 1
+    created_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id)
+    #return redirect("/comment")
+
+@app.route('/commentPage', methods=['POST', 'GET'])
+def viewcomment():
+    posts = post_repository_singleton.get_all_posts()
+    #if (request.form.get('debug2'))
+    #Post_Id = 0
+    Post_Id = int(request.form.get('debug'))
+    comments = post_repository_singleton.get_all_comments()
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id)
 
 '''
 @app.route('/account', methods=['POST', 'GET'])

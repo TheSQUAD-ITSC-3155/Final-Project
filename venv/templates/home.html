@@ -24,21 +24,21 @@
     <main>
       <section>
         <h2>Top Posts</h2>
-        <p id = debug>
-          id = "lol"
-        </p>
         <ul>
+          <form action="/commentPage" method="post">
               {%for post in posts%}
               <li>
                 <h1>{{post.C_Name}}</h1>
                 <h3><a href="#">{{post.Post_ID}}</a></h3>
                 <!--<button type="button">Comment</button>-->
-                <form action="/comment" method="post">
                   <input id= {{post.Post_Id}} type="submit" value="Comment">
-                </form>
-                <button id={{post.Post_Id}}>Angre</button>
+                  {% if post.Post_Id == 0 %}
+                  <input type="text" name="debug" id="debug" class="form-control" autocomplete="off">
+                  {% endif %}
+                  <button id={{post.Post_Id}}>Angre</button>
                 {% endfor %}
               </li>
+            </form>
             </ul>
           </section>
     </main>
@@ -53,7 +53,7 @@
     document.addEventListener('click', event => {
     if (event.target.matches('button')) {
       const buttonId = event.target.id;
-      document.getElementById("debug").innerHTML = `${buttonId}`
+      document.getElementById("debug").value = `${buttonId}`
     }
   });
   </script>
