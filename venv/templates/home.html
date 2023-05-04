@@ -13,7 +13,9 @@
           <ul>
             <li><a action="/home" method="get" href="/home">Home</a></li>
             <li><a action="/account" method="get" href="/account">Account</a></li>
-            <li><a action="/createpost" method="post" href="/createpost">Create Post</a></li>
+            <form action = "/createpost" method="post">
+            <li><a href="/createpost">Create Post</a></li>
+            </form>
             <li><a action="/" method="post" href="/">Logout</a></li>
           </ul>
         </nav>
@@ -24,6 +26,7 @@
     <main>
       <section>
         <h2>Top Posts</h2>
+        <p>{{ whoLoggedIn }}</p>
         <ul>
           <form action="/commentPage" method="post">
               {%for post in posts%}

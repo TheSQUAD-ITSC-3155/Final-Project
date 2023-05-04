@@ -36,6 +36,18 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
+form.none {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 50px auto;
+  width: 60%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 input[type="text"],
 textarea {
   width: 100%;
@@ -98,11 +110,16 @@ nav ul {
     color: #FFF;
     text-decoration: none;
   }
+
+  li {
+    list-style-type: none
+  }
     </style>
   </head>
   <body>
     <header>
         <h1>Bootleg Reddit</h1>
+        <p>{{ whoLoggedIn }}</p>
         <nav>
           <ul>
             <li><a action="/home" method="get" href="/home">Home</a></li>
@@ -120,7 +137,6 @@ nav ul {
       <input type="text" name="debug2" id="debug2" class="form-control" autocomplete="off" value="{{Post_Id}}" hidden = "hidden">
       <label for="post_comment">Comment:</label>
       <textarea id="post_comment" name="post_comment" class="form-control" autocomplete="off" required maxlength="200" placeholder="Enter your comment here"></textarea>
-      <br>
       <button type="submit">Comment</button>
     </form>
     
@@ -130,7 +146,12 @@ nav ul {
         {% for comment in comments %}
         {% if comment.Post_Id == Post_Id %}
           <li>
-            <p>{{ comment.Words }}</p>
+            <form action="/deleteComment/{{comment.Comment_Id}}" class="none">
+              <p>{{ comment.Words }}</p>
+              {% if comment.User_Id == whoLoggedIn %}
+              <button>delete</button>
+              {% endif %}
+            </form>
           </li>
         {% endif %}
         {% endfor %}
