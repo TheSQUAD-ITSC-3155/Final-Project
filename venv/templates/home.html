@@ -28,14 +28,15 @@
           <form action="/commentPage" method="post">
               {%for post in posts%}
               <li>
-                <h1>{{post.C_Name}}</h1>
+                
+                <h1>{{ post.C_Name }}</h1>
+
+                <h3>{{post.Words}}</h3>
                 <h3><a href="#">{{post.Post_ID}}</a></h3>
-                <!--<button type="button">Comment</button>-->
-                  <input id= {{post.Post_Id}} type="submit" value="Comment">
                   {% if post.Post_Id == 0 %}
                   <input type="text" name="debug" id="debug" class="form-control" autocomplete="off" hidden = "hidden">
                   {% endif %}
-                  <button id={{post.Post_Id}}>Angre</button>
+                  <button id={{post.Post_Id}}>Comment</button>
                 {% endfor %}
               </li>
             </form>
