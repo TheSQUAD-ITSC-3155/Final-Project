@@ -119,7 +119,6 @@ nav ul {
   <body>
     <header>
         <h1>Bootleg Reddit</h1>
-        <p>{{ whoLoggedIn }}</p>
         <nav>
           <ul>
             <li><a action="/home" method="get" href="/home">Home</a></li>
@@ -147,10 +146,25 @@ nav ul {
         {% if comment.Post_Id == Post_Id %}
           <li>
             <form action="/deleteComment/{{comment.Comment_Id}}" class="none">
+                {%for user in users%}
+                  {% if comment.User_Id == user.User_Id %}
+                    <h5>{{user.Username}}</h5>
+                  {% endif %}
+                {% endfor %}
               <p>{{ comment.Words }}</p>
               {% if comment.User_Id == whoLoggedIn %}
               <button>delete</button>
               {% endif %}
+            </form>
+            <form action="/likeComment/{{comment.Comment_Id}}">
+            <button>
+              {%for likecomment in likedComments%}
+                {% if whoLoggedIn == likecomment.User_Id and likecomment.Comment_Id == comment.Comment_Id %}
+                  <img src="../static/images/check.png">
+                {% endif %}
+              {% endfor %}
+              <img src="../static/images/checkgrey.png">
+            </button>
             </form>
           </li>
         {% endif %}

@@ -42,8 +42,8 @@ class PostRepository:
         return new_person
     
     #Liked Things
-    def add_likedcomment(self, Post_Id: int, User_Id: int,) -> liked_comments:
-        new_likedcomment = liked_comments(Post_Id = Post_Id, User_Id = User_Id)
+    def add_likedcomment(self, Comment_Id: int, User_Id: int,) -> liked_comments:
+        new_likedcomment = liked_comments(Comment_Id = Comment_Id, User_Id = User_Id)
         db.session.add(new_likedcomment)
         db.session.commit()
         return new_likedcomment

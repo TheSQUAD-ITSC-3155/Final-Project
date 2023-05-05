@@ -34,6 +34,22 @@ def deleteComment(commentId):
     post_repository_singleton.remove_comment(commentId)
     return redirect("/home")
 
+@app.route('/likeComment/<int:commentId>')
+def checkLikeComment(commentId):
+    likedComments = post_repository_singleton.get_all_likedcomments()
+    whoLoggedIn = session.get('userLog')
+    likedComments = post_repository_singleton.get_all_likedcomments()
+    posts = post_repository_singleton.get_all_posts()
+    Post_Id = session.get('postID')
+    users = post_repository_singleton.get_all_accounts()
+    comments = post_repository_singleton.get_all_comments()
+
+    for comment in likedComments:
+        if comment.User_Id == whoLoggedIn and comment.Comment_Id == commentId:
+            return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id , whoLoggedIn=whoLoggedIn, users=users, likedComments=likedComments)
+    post_repository_singleton.add_likedcomment(commentId, whoLoggedIn)
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id , whoLoggedIn=whoLoggedIn, users=users, likedComments=likedComments)
+
 @app.route('/home', methods=['POST', 'GET'])
 def goHome():
     password = request.form.get('password')
@@ -46,10 +62,10 @@ def goHome():
                 #whoLoggedIn = user.User_Id
                 session['userLog'] = user.User_Id
                 whoLoggedIn = session.get('userLog')
-                return render_template('home.html', posts=posts, whoLoggedIn=whoLoggedIn)
+                return render_template('home.html', posts=posts, whoLoggedIn=whoLoggedIn , users=users)
     if request.method == 'GET':
         whoLoggedIn = session.get('userLog')
-        return render_template('home.html', posts=posts, whoLoggedIn=whoLoggedIn)
+        return render_template('home.html', posts=posts, whoLoggedIn=whoLoggedIn, users=users)
     return render_template('index.html')
 
 @app.route('/newAccount', methods=['POST', 'GET'])
@@ -98,9 +114,11 @@ def postcomment():
 
 @app.route('/comment', methods=['POST', 'GET'])
 def postcomment():
+    likedComments = post_repository_singleton.get_all_likedcomments()
     whoLoggedIn = session.get('userLog')
     posts = post_repository_singleton.get_all_posts()
-    Post_Id = int(request.form.get('debug2'))
+    Post_Id = session.get('postID')
+    users = post_repository_singleton.get_all_accounts()
     if request.method == 'POST':
 
         User_Id = session.get('userLog')
@@ -123,17 +141,20 @@ def postcomment():
         #if last_comment.Words == new_comment.Words:
         #    post_repository_singleton.remove_comment(Comment_Id)
 
-    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id , whoLoggedIn=whoLoggedIn)
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id , whoLoggedIn=whoLoggedIn, users=users, likedComments=likedComments)
 
 @app.route('/commentPage', methods=['POST', 'GET'])
 def viewcomment():
+    likedComments = post_repository_singleton.get_all_likedcomments()
+    users = post_repository_singleton.get_all_accounts()
     posts = post_repository_singleton.get_all_posts()
     #if (request.form.get('debug2'))
     #Post_Id = 0
     Post_Id = int(request.form.get('debug'))
     comments = post_repository_singleton.get_all_comments()
     whoLoggedIn = session.get('userLog')
-    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id, whoLoggedIn=whoLoggedIn)
+    session['postID'] = int(request.form.get('debug'))
+    return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id, whoLoggedIn=whoLoggedIn, users=users, likedComments=likedComments)
 
 '''
 @app.route('/account', methods=['POST', 'GET'])

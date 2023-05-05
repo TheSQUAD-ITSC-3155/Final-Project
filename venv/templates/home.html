@@ -26,14 +26,17 @@
     <main>
       <section>
         <h2>Top Posts</h2>
-        <p>{{ whoLoggedIn }}</p>
         <ul>
           <form action="/commentPage" method="post">
               {%for post in posts%}
               <li>
                 
                 <h1>{{ post.C_Name }}</h1>
-
+                {%for user in users%}
+                  {% if post.User_Id == user.User_Id %}
+                    <h4>Posted by: {{user.Username}}</h4>
+                  {% endif %}
+                {% endfor %}
                 <h3>{{post.Words}}</h3>
                 <h3><a href="#">{{post.Post_ID}}</a></h3>
                   {% if post.Post_Id == 0 %}
