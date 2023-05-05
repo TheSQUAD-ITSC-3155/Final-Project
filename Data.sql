@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS Post (
 );
 INSERT INTO Post (Post_Id, C_Name, User_Id, Words)
 VALUES
-    (0, 'Why', 0, 'I hurt in the shower.'),
-    (1, 'Do', 1, 'You feel it?')
+    (0, 'I am getting into the comp sci field, what to expect?', 0, 'Recently entered UNCC, not sure what focus I want to go in on. Any recommendations?'),
+    (1, 'Looking for a job in data science.', 1, 'Anyone got good data science company recommendations?')
 ;
 select * from Post;
 

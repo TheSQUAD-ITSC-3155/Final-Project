@@ -18,7 +18,7 @@ from src.models import db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = \
-'mysql+pymysql://root:password@localhost:3306/Reddit'
+'mysql+pymysql://root:Luigi123@localhost:3306/Reddit'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 SESSION_TYPE = 'redis'
@@ -67,6 +67,27 @@ def goHome():
         whoLoggedIn = session.get('userLog')
         return render_template('home.html', posts=posts, whoLoggedIn=whoLoggedIn, users=users)
     return render_template('index.html')
+
+#edit comment
+@app.route('/editComment/<int:commentId>')
+def editComment(commentId):
+    posts = post_repository_singleton.get_all_posts()
+    comments = post_repository_singleton.get_all_comments()
+    users = post_repository_singleton.get_all_accounts()
+    likedComments = post_repository_singleton.get_all_likedcomments()
+
+    Post_Id = Comments.Post_Id    
+    C_Name = ""    
+    Words = ""    
+    whoLoggedIn = session.get('userLog')    
+    #whoLoggedIn = 0    
+
+    User_Id = whoLoggedIn
+    post_repository_singleton.remove_comment(commentId)
+    #post_repository_singleton.create_comment(commentId, Post_Id, User_Id, Words)  
+    #post_repository_singleton.remove_comment(commentId+1)   
+
+    return render_template('comment.html')
 
 @app.route('/newAccount', methods=['POST', 'GET'])
 def pengus():
@@ -138,8 +159,9 @@ def postcomment():
         new_comment = post_repository_singleton.create_comment(Comment_Id, Post_Id, User_Id, Words)
         
 
-        #if last_comment.Words == new_comment.Words:
-        #    post_repository_singleton.remove_comment(Comment_Id)
+    for comment in comments:
+        if comment.Words == new_comment.Words and comment.User_Id == new_comment.User_Id and comment.Post_Id == new_comment.Post_Id:
+            post_repository_singleton.remove_comment(new_comment.Comment_Id)
 
     return render_template('comment.html', comments=comments, posts = posts, Post_Id = Post_Id , whoLoggedIn=whoLoggedIn, users=users, likedComments=likedComments)
 

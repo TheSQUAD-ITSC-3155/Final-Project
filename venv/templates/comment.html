@@ -118,11 +118,10 @@ nav ul {
   </head>
   <body>
     <header>
-        <h1>Bootleg Reddit</h1>
+        <h1>UNCC Forums</h1>
         <nav>
           <ul>
             <li><a action="/home" method="get" href="/home">Home</a></li>
-            <li><a action="/account" method="get" href="/account">Account</a></li>
           </ul>
         </nav>
       </header>
@@ -148,13 +147,18 @@ nav ul {
             <form action="/deleteComment/{{comment.Comment_Id}}" class="none">
                 {%for user in users%}
                   {% if comment.User_Id == user.User_Id %}
-                    <h5>{{user.Username}}</h5>
+                    <h5>Posted by: {{user.Username}}</h5>
                   {% endif %}
                 {% endfor %}
               <p>{{ comment.Words }}</p>
               {% if comment.User_Id == whoLoggedIn %}
               <button>delete</button>
               {% endif %}
+            </form>
+            <form action="/editComment/{{comment.Comment_Id}}" class="none">                 
+                 {% if comment.User_Id == whoLoggedIn %}      
+                    <button>Edit</button>         
+                 {% endif %}        
             </form>
             <form action="/likeComment/{{comment.Comment_Id}}">
             <button>
@@ -172,7 +176,7 @@ nav ul {
       </ul>
       </section>
     <footer>
-        <p>Bootleg Reddit &copy; 2023</p>
+      <p>UNCC Forums &copy; 2023</p>
       </footer>
   </body>
 </html>
